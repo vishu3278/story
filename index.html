@@ -1,22 +1,50 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MyApp</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="../favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="systemjs.config.js"></script>
-    <script>
-      System.import('app').catch(function(err){ console.error(err); });
-    </script>
+<head>
+    <meta charset="utf-8">
+    <title>MyApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
 </head>
-<body>
- 
-  <app-root></app-root>
-  
+
+<body onload="loadApp()">
+    <div id="app" class="section">
+        <div class="container">
+            <h1 class="title">{{ page }}</h1>
+            <button class="button" v-on:click="getPost()">Get Posts</button>
+            <button class="button" v-on:click="getPages()">Get Pages</button>
+            <article class="media" v-for="item in posts">
+                <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img v-bind:src="item._links">
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <strong v-html="item.title.rendered"></strong> <small>{{ item.date}}</small>
+                        <div v-html="item.excerpt.rendered"></div>
+                    </div>
+                    <!-- <nav class="level is-mobile">
+                        <div class="level-left">
+                            <a v-bind:href="item.link" class="level-item">
+                              <span class="icon is-small"><i class="material-icons">launch</i></span></a>
+                        </div>
+                    </nav> -->
+                </div>
+            </article>
+            <div class="box" v-for="item in pages">
+              <h3 class="title" v-html="item.title.rendered"></h3>
+              <h5 class="subtitle">{{item.date}}</h5>
+              <div v-html="item.content.rendered"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
+
 </html>
