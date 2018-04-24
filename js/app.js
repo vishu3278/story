@@ -1,11 +1,12 @@
 function loadApp() {
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    function onDeviceReady() {
-        
-    }
+    
 }
 
+function onDeviceReady() {
+    alert("Ready.");
+}
 var myapp = new Vue({
     el: "#app",
     data: {
