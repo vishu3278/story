@@ -33,12 +33,13 @@
     <preference name="orientation" value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="true" />
+
     <!-- Android only preferences -->
     <preference name="KeepRunning" value="false"/>
     <preference name="LoadUrlTimeoutValue" value="10000"/>
     <preference name="InAppBrowserStorageEnabled" value="true"/>
-    <preference name="LoadingDialog" value="My Title,My Message"/>
-    <preference name="ErrorUrl" value="myErrorPage.html"/>
+    <preference name="LoadingDialog" value="Loading, Please wait..."/>
+    <preference name="ErrorUrl" value="error.html"/>
     <preference name="ShowTitle" value="true"/>
     <preference name="LogLevel" value="VERBOSE"/>
     <preference name="AndroidLaunchMode" value="singleTop"/>
