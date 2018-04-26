@@ -51,8 +51,8 @@
     <plugin name="cordova-plugin-console" />
     <plugin name="cordova-plugin-contacts" />
     <plugin name="cordova-plugin-device" />
-    <plugin name="cordova-plugin-device-motion" />
-    <plugin name="cordova-plugin-device-orientation" />
+    <!-- <plugin name="cordova-plugin-device-motion" />
+    <plugin name="cordova-plugin-device-orientation" /> -->
     <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-file" />
     <plugin name="cordova-plugin-file-transfer" />
@@ -99,9 +99,9 @@
     <gap:splash src="res/screen/ios/screen-ipad-landscape.png"          gap:platform="ios"     width="1024" height="768" />
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg"      gap:platform="winphone" /> -->
 
-    <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+    <!-- <gap:config-file platform="ios" parent="CFBundleShortVersionString">
     <string>100</string>
-    </gap:config-file>
+    </gap:config-file> -->
 
     <!--
         Define access to external domains.
