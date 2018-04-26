@@ -30,7 +30,7 @@ function onDeviceReady() {
 var myapp = new Vue({
     el: "#app",
     data: {
-        page: "Story",
+        page: "Geolocation App",
         posts: [],
         pages: [],
         errors: []
