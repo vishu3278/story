@@ -1,5 +1,6 @@
 function loadApp() {
-    document.addEventListener("deviceready", onDeviceReady, false);   
+    document.addEventListener("deviceready", onDeviceReady, false);
+    alert("Body loaded.");
 }
 
 /*onSuccess Callback*/
@@ -21,7 +22,7 @@ function onError(error) {
 }
 
 function onDeviceReady() {
-    alert("Ready.");
+  alert("Ready.");
 	// alert("geolocation works well.");
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
