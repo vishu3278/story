@@ -21,6 +21,8 @@
         following tag to your config.xml; you will still have the INTERNET
         permission on your app, which PhoneGap requires.
     -->
+    <content src="index.html" />
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="permissions"                value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
