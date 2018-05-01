@@ -33,20 +33,7 @@
     <preference name="orientation" value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="true" />
-
-    <!-- Android only preferences -->
-    <preference name="KeepRunning" value="false"/>
-    <preference name="LoadUrlTimeoutValue" value="10000"/>
-    <preference name="InAppBrowserStorageEnabled" value="true"/>
-    <preference name="LoadingDialog" value="Loading, Please wait..."/>
-    <preference name="ErrorUrl" value="error.html"/>
-    <preference name="ShowTitle" value="true"/>
-    <preference name="LogLevel" value="VERBOSE"/>
-    <preference name="AndroidLaunchMode" value="singleTop"/>
-    <preference name="DefaultVolumeStream" value="call" />
-    <preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
-    <preference name="AppendUserAgent" value="My Browser" />
-    <preference name="android-installLocation" value="auto" />
+    
     
     <!-- Define a specific version of PhoneGap to build into your app. -->
     <!-- <preference name="phonegap-version" value="3.5.0" /> -->
@@ -115,6 +102,18 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="Fullscreen" value="true" />
+        <preference name="KeepRunning" value="false"/>
+        <preference name="LoadUrlTimeoutValue" value="10000"/>
+        <preference name="InAppBrowserStorageEnabled" value="true"/>
+        <preference name="LoadingDialog" value="Loading, Please wait..."/>
+        <preference name="ErrorUrl" value="error.html"/>
+        <preference name="ShowTitle" value="true"/>
+        <preference name="LogLevel" value="VERBOSE"/>
+        <preference name="AndroidLaunchMode" value="singleTop"/>
+        <preference name="DefaultVolumeStream" value="call" />
+        <preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
+        <preference name="AppendUserAgent" value="My Browser" />
+        <preference name="android-installLocation" value="auto" />
         <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
