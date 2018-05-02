@@ -1,32 +1,3 @@
-function loadApp() {
-    document.addEventListener("deviceready", onDeviceReady, false);
-    alert("Body loaded.");
-}
-
-/*onSuccess Callback*/
-var onSuccess = function(position) {
-    alert('Latitude: '          + position.coords.latitude          + '\n' +
-          'Longitude: '         + position.coords.longitude         + '\n' +
-          'Altitude: '          + position.coords.altitude          + '\n' +
-          'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          'Heading: '           + position.coords.heading           + '\n' +
-          'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
-};
-
-/*onError Callback receives a PositionError object*/
-function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-}
-
-function onDeviceReady() {
-  alert("Ready.");
-	// alert("geolocation works well.");
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
-
 
 var myapp = new Vue({
     el: "#app",
