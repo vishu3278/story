@@ -44,43 +44,45 @@
 </head>
 
 <body onload="loadApp()">
-    <div id="app" class="section">
-        <div class="container">
-            <h1 class="title">{{ page }}</h1>
-            <button class="button" v-on:click="getPost()">Get Posts</button>
-            <button class="button" v-on:click="getPages()">Get Pages</button>
-            <section class="hero is-primary">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">Geolocation</h1>
-                        <h2 class="subtitle">Your current location</h2>
-                        <p>Lat: {{lat}} | Long: {{long}}</p>
-                    </div>
+    <div id="app">
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Geolocation</h1>
+                    <h2 class="subtitle">Your current location</h2>
+                    <p>Lat: {{lat}} | Long: {{long}}</p>
                 </div>
-            </section>
-            <article class="media" v-for="item in posts">
-                <figure class="media-left">
-                    <p class="image is-64x64">
-                        <img v-bind:src="item._links">
-                    </p>
-                </figure>
-                <div class="media-content">
-                    <div class="content">
-                        <strong v-html="item.title.rendered"></strong> <small>{{ item.date}}</small>
-                        <div v-html="item.excerpt.rendered"></div>
-                    </div>
-                    <!-- <nav class="level is-mobile">
+            </div>
+        </section>
+        <div class="section">
+            <div class="container">
+                <h1 class="title">{{ page }}</h1>
+                <button class="button" v-on:click="getPost()">Get Posts</button>
+                <button class="button" v-on:click="getPages()">Get Pages</button>
+                <article class="media" v-for="item in posts">
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img v-bind:src="item._links">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <strong v-html="item.title.rendered"></strong> <small>{{ item.date}}</small>
+                            <div v-html="item.excerpt.rendered"></div>
+                        </div>
+                        <!-- <nav class="level is-mobile">
                         <div class="level-left">
                             <a v-bind:href="item.link" class="level-item">
                               <span class="icon is-small"><i class="material-icons">launch</i></span></a>
                         </div>
                     </nav> -->
+                    </div>
+                </article>
+                <div class="box" v-for="item in pages">
+                    <h3 class="title" v-html="item.title.rendered"></h3>
+                    <h5 class="subtitle">{{item.date}}</h5>
+                    <div v-html="item.content.rendered"></div>
                 </div>
-            </article>
-            <div class="box" v-for="item in pages">
-                <h3 class="title" v-html="item.title.rendered"></h3>
-                <h5 class="subtitle">{{item.date}}</h5>
-                <div v-html="item.content.rendered"></div>
             </div>
         </div>
     </div>
