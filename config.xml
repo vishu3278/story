@@ -119,9 +119,6 @@
         <splash density="port-xhdpi" src="res/screens/android/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="res/screens/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="res/screens/android/drawable-port-xxxhdpi-screen.png" />
-        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-        <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     </platform>
     <!-- <platform name="ios">
         <allow-intent href="itms:*" />
