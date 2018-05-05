@@ -2,10 +2,12 @@
 var myapp = new Vue({
     el: "#app",
     data: {
-        page: "Geolocation App",
+        page: "Story App",
         posts: [],
         pages: [],
-        errors: []
+        errors: [],
+        lat:'',
+        long:''
     },
     methods: {
         getPost: function() {
