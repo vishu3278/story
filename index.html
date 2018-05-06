@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Story App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
     <script type="text/javascript">
@@ -34,10 +34,24 @@
     }
     var geooptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
 
+
+    function onConfirm(buttonIndex) {
+        if (buttonIndex == 1) {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError, geooptions);
+        } else {
+            alert('You selected button ' + buttonIndex);
+        }
+    }
+
+
     function onDeviceReady() {
         alert("Device Ready!");
-        // alert("geolocation works well.");
-        navigator.geolocation.getCurrentPosition(onSuccess, onError, geooptions);
+        navigator.notification.confirm(
+            'Confirm location access!', // message
+             onConfirm,            // callback to invoke with index of button pressed
+            'Geolocation',           // title
+            ['Allow','Deny']     // buttonLabels
+        );
     }
     </script>
     <script type="text/javascript" src="cordova.js"></script>
