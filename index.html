@@ -101,8 +101,8 @@
         <div class="section">
             <div class="container">
                 <h1 class="title">{{ page }}</h1>
-                <button class="button" v-on:click="getPost()" v-bind:class="{'is-loading':loading}">Get Posts</button>
-                <button class="button" v-on:click="getPages()" v-bind:class="{'is-loading':loading}">Get Pages</button>
+                <button class="button" v-on:click="getPost()" v-bind:class="{'is-loading':loadingPost}">Get Posts</button>
+                <button class="button" v-on:click="getPages()" v-bind:class="{'is-loading':loadingPage}">Get Pages</button>
                 <article class="media" v-for="item in posts">
                     <figure class="media-left">
                         <p class="image is-64x64">
