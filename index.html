@@ -53,6 +53,9 @@
             ['Allow','Deny']     // buttonLabels
         );
         myapp.model = device.model;
+        myapp.platform = device.platform;
+        myapp.version = device.version;
+        myapp.mfg = device.manufacturer;
     }
     </script>
     <script type="text/javascript" src="cordova.js"></script>
@@ -66,7 +69,7 @@
                     <h1 class="title">Geolocation</h1>
                     <h2 class="subtitle">Your current location</h2>
                     <p>Lat: {{lat}} | Long: {{long}}</p>
-                    <p>Device: Model:{{ model }}</p>
+                    <p>Device: Model:{{mfg}} {{ model }} | Platform: {{platform}} {{version}} </p>
                 </div>
             </div>
         </section>

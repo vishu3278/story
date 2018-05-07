@@ -8,7 +8,10 @@ var myapp = new Vue({
         errors: [],
         lat:'',
         long:'',
-        model:''
+        model:'',
+        platform:'',
+        version:'',
+        mfg:''
     },
     methods: {
         getPost: function() {
