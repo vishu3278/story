@@ -7,7 +7,8 @@ var myapp = new Vue({
         pages: [],
         errors: [],
         lat:'',
-        long:''
+        long:'',
+        model:''
     },
     methods: {
         getPost: function() {
