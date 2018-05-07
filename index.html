@@ -53,6 +53,7 @@
         var networkState = navigator.connection.type;
         if (networkState !== Connection.NONE) {
             myapp.network = true;
+            navigator.vibrate([200, 400, 200]);
         }else{
             myapp.network = false;
         }
