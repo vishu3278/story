@@ -6,7 +6,7 @@ var myapp = new Vue({
         posts: [],
         pages: [],
         errors: [],
-        loading:false,
+        loading: false,
         lat:'',
         long:'',
         model:'',
