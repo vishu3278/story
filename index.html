@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Story App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
     <script type="text/javascript">
     /*onSuccess Callback*/
@@ -30,7 +30,7 @@
 
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
-        alert("Body loaded.");
+        /*alert("Body loaded.");*/
     }
     var geooptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
 
@@ -42,10 +42,25 @@
             alert('You selected button ' + buttonIndex);
         }
     }
+    function onOffline() {
+        console.log("lost connection");
+        myapp.network = false;
+        navigator.notification.alert("You lost connection!");
+    }
 
+    function onOnline() {
+        // Handle the online event
+        var networkState = navigator.connection.type;
+        if (networkState !== Connection.NONE) {
+            myapp.network = true;
+        }else{
+            myapp.network = false;
+        }
+    }
 
     function onDeviceReady() {
         alert("Device Ready!");
+        
         navigator.notification.confirm(
             'Confirm location access!', // message
              onConfirm,            // callback to invoke with index of button pressed
@@ -57,6 +72,9 @@
         myapp.platform = device.platform;
         myapp.version = device.version;
         myapp.mfg = device.manufacturer;
+        /*network information*/
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
     }
     </script>
     <script type="text/javascript" src="cordova.js"></script>
@@ -71,6 +89,12 @@
                     <h2 class="subtitle">Your current location</h2>
                     <p>Lat: {{lat}} | Long: {{long}}</p>
                     <p>Device: Model:{{mfg}} {{ model }} | Platform: {{platform}} {{version}} </p>
+                    <p>
+                        Network:
+                    <span class="icon is-large has-background-white has-text-primary">
+                        <i class="mdi mdi-36px" v-bind:class="{'mdi-wifi':network,'mdi-wifi-off':!network}"></i>
+                    </span>
+                </p>
                 </div>
             </div>
         </section>
