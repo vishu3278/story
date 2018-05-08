@@ -18,20 +18,31 @@ var myapp = new Vue({
     },
     methods: {
         getPost: function() {
-            this.loadingPost = true;
-            axios.get('https://wowitsolutions.com/antardirshti/wp-json/wp/v2/posts')
-                .then(response => {
-                    this.posts = response.data;
-                    this.loadingPost = false})
-                .catch(e => {this.errors.push(e)});
+            if (this.network == true) {
+                this.loadingPost = true;
+                axios.get('https://wowitsolutions.com/antardirshti/wp-json/wp/v2/posts')
+                    .then(response => {
+                        this.posts = response.data;
+                        this.loadingPost = false})
+                    .catch(e => {this.errors.push(e)});
+
+            } else {
+                // alert("No network available.");
+                navigator.notification.alert("No internet available!");
+            }
         },
         getPages: function() {
-            this.loadingPage = true,
-            axios.get('https://wowitsolutions.com/antardirshti/wp-json/wp/v2/pages')
-                .then(response => {
-                    this.pages = response.data;
-                    this.loadingPage = false})
-                .catch(e => {this.errors.push(e)});
+            if (this.network == true) {
+                this.loadingPage = true,
+                axios.get('https://wowitsolutions.com/antardirshti/wp-json/wp/v2/pages')
+                    .then(response => {
+                        this.pages = response.data;
+                        this.loadingPage = false})
+                    .catch(e => {this.errors.push(e)});
+                
+            } else {
+                navigator.notification.alert("No internet available!");
+            }
         }
     }
 })
