@@ -42,6 +42,7 @@
             alert('You selected button ' + buttonIndex);
         }
     }
+
     function onOffline() {
         console.log("lost connection");
         myapp.network = false;
@@ -49,26 +50,20 @@
     }
 
     function onOnline() {
-        // Handle the online event
-        var networkState = navigator.connection.type;
-        if (networkState !== Connection.NONE) {
-            myapp.network = true;
-            navigator.vibrate([200, 400, 200]);
-        }else{
-            myapp.network = false;
-        }
+        myapp.network = true;
+        navigator.vibrate([200, 400, 200]);
     }
 
     function onDeviceReady() {
         alert("Device Ready!");
-        
+
         checkConnection();
-        
+
         navigator.notification.confirm(
             'Confirm location access!', // message
-             onConfirm,            // callback to invoke with index of button pressed
-            'Geolocation',           // title
-            ['Allow','Deny']     // buttonLabels
+            onConfirm, // callback to invoke with index of button pressed
+            'Geolocation', // title
+            ['Allow', 'Deny'] // buttonLabels
         );
         /*get device details*/
         myapp.model = device.model;
@@ -91,13 +86,15 @@
                     <h1 class="title">Geolocation</h1>
                     <h2 class="subtitle">Your current location</h2>
                     <p>Lat: {{lat}} | Long: {{long}}</p>
-                    <p>Device: Model:{{mfg}} {{ model }} | Platform: {{platform}} {{version}} </p>
-                    <p>
-                        Network:
-                    <span class="icon is-large has-background-white has-text-primary">
-                        <i class="mdi mdi-36px" v-bind:class="{'mdi-wifi':network,'mdi-wifi-off':!network}"></i>
-                    </span>
-                </p>
+                    <h3>Device </h3>
+                    <p>Device: Model:{{mfg}} {{ model }}</p>
+                    <p>Platform: {{platform}} {{version}} </p>
+                    <h3>Network:</h3>
+                    <p>{{networkType}}
+                        <span class="icon is-large has-background-white has-text-primary">
+                            <i class="mdi mdi-36px" v-bind:class="{'mdi-wifi':network,'mdi-wifi-off':!network}"></i>
+                        </span>
+                    </p>
                 </div>
             </div>
         </section>
@@ -106,6 +103,11 @@
                 <h1 class="title">{{ page }}</h1>
                 <button class="button" v-on:click="getPost()" v-bind:class="{'is-loading':loadingPost}">Get Posts</button>
                 <button class="button" v-on:click="getPages()" v-bind:class="{'is-loading':loadingPage}">Get Pages</button>
+                <hr>
+                <div class="notification is-success" v-if="message">
+                    <button class="delete"></button>
+                    {{msgtext}}
+                </div>
                 <article class="media" v-for="item in posts">
                     <figure class="media-left">
                         <p class="image is-64x64">

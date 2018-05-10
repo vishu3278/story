@@ -12,6 +12,7 @@ function checkConnection() {
     states[Connection.NONE]     = 'No network connection';
 
     // alert('Connection type: ' + states[networkState]);
+    myapp.networkType = states[networkState];
     if (networkState !== Connection.NONE) {
         myapp.network = true;
         navigator.vibrate([200, 400, 200]);
@@ -29,13 +30,16 @@ var myapp = new Vue({
         errors: [],
         loadingPost: false,
         loadingPage: false,
+        message:false,
+        msgtext:'',
         lat:'',
         long:'',
         model:'',
         platform:'',
         version:'',
         mfg:'',
-        network:''
+        network:'',
+        networkType:''
     },
     methods: {
         getPost: function() {
@@ -44,7 +48,9 @@ var myapp = new Vue({
                 axios.get('https://wowitsolutions.com/antardirshti/wp-json/wp/v2/posts')
                     .then(response => {
                         this.posts = response.data;
-                        this.loadingPost = false})
+                        this.loadingPost = false;
+                        this.showMessage("Posts loaded successfully.");
+                    })
                     .catch(e => {this.errors.push(e)});
 
             } else {
@@ -58,12 +64,23 @@ var myapp = new Vue({
                 axios.get('https://wowitsolutions.com/antardirshti/wp-json/wp/v2/pages')
                     .then(response => {
                         this.pages = response.data;
-                        this.loadingPage = false})
+                        this.loadingPage = false;
+                        // this.message = true;
+                        this.showMessage("Pages loaded successfully.");
+                    })
                     .catch(e => {this.errors.push(e)});
                 
             } else {
                 navigator.notification.alert("No internet available!");
             }
+        },
+        showMessage: function(msg) {
+            this.message = true;
+            this.msgtext = msg;
+            setInterval(function (argument) {
+                this.message = false;
+                this.msgtext = '';
+            },5000)
         }
     }
 })
