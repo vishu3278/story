@@ -62,6 +62,8 @@
     function onDeviceReady() {
         alert("Device Ready!");
         
+        checkConnection();
+        
         navigator.notification.confirm(
             'Confirm location access!', // message
              onConfirm,            // callback to invoke with index of button pressed
