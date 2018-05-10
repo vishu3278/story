@@ -77,9 +77,9 @@ var myapp = new Vue({
         showMessage: function(msg) {
             this.message = true;
             this.msgtext = msg;
-            setInterval(function (argument) {
-                this.message = false;
+            setInterval(function () {
                 this.msgtext = '';
+                this.message = false;
             },5000)
         }
     }
