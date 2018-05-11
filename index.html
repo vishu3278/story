@@ -64,10 +64,10 @@
                     <h2 class="subtitle">Your current location</h2>
                     <p>Lat: {{lat}} | Long: {{long}}</p>
                     <div id="geo"></div>
-                    <h2>Device </h2>
+                    <h4 class="title is-4">Device </h4>
                     <p><span class="tag is-white">Model</span>:{{mfg}} {{ model }}</p>
                     <p><span class="tag is-white">Platform</span>: {{platform}} {{version}} </p>
-                    <h2>Network:</h2>
+                    <h4 class="title is-4">Network:</h4>
                     <p><span class="tag is-white">Type</span>{{networkType}}
                         <span class="icon is-large has-background-white has-text-primary">
                             <i class="mdi mdi-36px" v-bind:class="{'mdi-wifi':network,'mdi-wifi-off':!network}"></i>
@@ -76,17 +76,18 @@
                 </div>
             </div>
         </section>
-        <div class="notification is-success" v-if="message">
-            <!-- <button class="delete"></button> -->
-            {{msgtext}}
-        </div>
+        
         <div class="section">
             <div class="container">
                 <h1 class="title">{{ page }}</h1>
                 <button class="button" v-on:click="getPost()" v-bind:class="{'is-loading':loadingPost}">Get Posts</button>
                 <button class="button" v-on:click="getPages()" v-bind:class="{'is-loading':loadingPage}">Get Pages</button>
                 <hr>
-                
+                <div class="notification is-success" v-if="message">
+                    <!-- <button class="delete"></button> -->
+                    {{msgtext}}
+                </div>
+
                 <article class="media" v-for="item in posts">
                     <figure class="media-left">
                         <p class="image is-64x64">
