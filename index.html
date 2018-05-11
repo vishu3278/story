@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
     <script type="text/javascript">
 
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
         /*alert("Body loaded.");*/
+        getLocation();
     }
     
     </script>
@@ -26,8 +28,9 @@
                     <h1 class="title">Geolocation</h1>
                     <h2 class="subtitle">Your current location</h2>
                     <p>Lat: {{lat}} | Long: {{long}}</p>
+                    <div id="geo"></div>
                     <h3>Device </h3>
-                    <p>Device: Model:{{mfg}} {{ model }}</p>
+                    <p>Model:{{mfg}} {{ model }}</p>
                     <p>Platform: {{platform}} {{version}} </p>
                     <h3>Network:</h3>
                     <p>{{networkType}}
@@ -79,6 +82,38 @@
     <script type="text/javascript" src="js/axios.min.js"></script>
     <script type="text/javascript" src="js/vue.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+        var x = document.getElementById("geo");
+        function getLocation() {
+            if (Modernizr.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition,showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            /*x.innerHTML = "Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude;*/
+            myapp.lat = position.coords.latitude;
+            myapp.long = position.coords.longitude;
+        }
+    </script>
 </body>
 
 </html>
