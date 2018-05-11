@@ -72,7 +72,8 @@ function onDeviceReady() {
         'Geolocation', // title
         ['Allow', 'Deny'] // buttonLabels
     );*/
-    
+    getLocation();
+
     /*get device details*/
     myapp.model = device.model;
     myapp.platform = device.platform;

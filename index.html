@@ -13,7 +13,6 @@
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
         /*alert("Body loaded.");*/
-        getLocation();
     }
     
     </script>
@@ -100,11 +99,11 @@
             }
         }
         var x = document.getElementById("geo");
-        var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };
+        // var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };
         function getLocation() {
             if (Modernizr.geolocation) {
                 alert("geolocation supported.");
-                navigator.geolocation.getCurrentPosition(showPosition,showError,geooptions);
+                navigator.geolocation.getCurrentPosition(showPosition,showError);
             } else {
                 x.innerHTML = "Geolocation is not supported.";
             }
