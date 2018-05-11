@@ -7,73 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
-    /*onSuccess Callback*/
-    var onSuccess = function(position) {
-        alert('Latitude: ' + position.coords.latitude + '\n' +
-            'Longitude: ' + position.coords.longitude + '\n' +
-            'Altitude: ' + position.coords.altitude + '\n' +
-            'Accuracy: ' + position.coords.accuracy + '\n' +
-            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-            'Heading: ' + position.coords.heading + '\n' +
-            'Speed: ' + position.coords.speed + '\n' +
-            'Timestamp: ' + position.timestamp + '\n');
-        myapp.lat = position.coords.latitude;
-        myapp.long = position.coords.longitude;
-    };
-
-    /*onError Callback receives a PositionError object*/
-    function onError(error) {
-        alert('code: ' + error.code + '\n' +
-            ' message: ' + error.message + '\n');
-    }
 
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
         /*alert("Body loaded.");*/
     }
-    var geooptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
-
-
-    function onConfirm(buttonIndex) {
-        if (buttonIndex == 1) {
-            navigator.geolocation.getCurrentPosition(onSuccess, onError, geooptions);
-        } else {
-            alert('You selected button ' + buttonIndex);
-        }
-    }
-
-    function onOffline() {
-        console.log("lost connection");
-        myapp.network = false;
-        navigator.notification.alert("You lost connection!");
-    }
-
-    function onOnline() {
-        myapp.network = true;
-        navigator.vibrate([200, 400, 200]);
-    }
-
-    function onDeviceReady() {
-        alert("Device Ready!");
-
-        checkConnection();
-
-        navigator.notification.confirm(
-            'Confirm location access!', // message
-            onConfirm, // callback to invoke with index of button pressed
-            'Geolocation', // title
-            ['Allow', 'Deny'] // buttonLabels
-        );
-        /*get device details*/
-        myapp.model = device.model;
-        myapp.platform = device.platform;
-        myapp.version = device.version;
-        myapp.mfg = device.manufacturer;
-        /*network information*/
-        document.addEventListener("offline", onOffline, false);
-        document.addEventListener("online", onOnline, false);
-    }
+    
     </script>
     <script type="text/javascript" src="cordova.js"></script>
 </head>
@@ -135,10 +79,7 @@
             </div>
         </div>
     </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <script type="text/javascript" src="js/axios.min.js"></script>
-    <script type="text/javascript" src="js/vue.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    
 </body>
 
 </html>

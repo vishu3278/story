@@ -1,3 +1,21 @@
+var onSuccess = function(position) {
+    alert('Latitude: ' + position.coords.latitude + '\n' +
+        'Longitude: ' + position.coords.longitude + '\n' +
+        'Altitude: ' + position.coords.altitude + '\n' +
+        'Accuracy: ' + position.coords.accuracy + '\n' +
+        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+        'Heading: ' + position.coords.heading + '\n' +
+        'Speed: ' + position.coords.speed + '\n' +
+        'Timestamp: ' + position.timestamp + '\n');
+    myapp.lat = position.coords.latitude;
+    myapp.long = position.coords.longitude;
+};
+
+/*onError Callback receives a PositionError object*/
+function onError(error) {
+    alert('code: ' + error.code + '\n' +
+        ' message: ' + error.message + '\n');
+}
 function checkConnection() {
     var networkState = navigator.connection.type;
 
@@ -21,6 +39,50 @@ function checkConnection() {
     }
 }
 
+var geooptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
+
+
+function onConfirm(buttonIndex) {
+    if (buttonIndex == 1) {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, geooptions);
+    } else {
+        alert('You selected button ' + buttonIndex);
+    }
+}
+
+function onOffline() {
+    console.log("lost connection");
+    myapp.network = false;
+    navigator.notification.alert("You lost connection!");
+}
+
+function onOnline() {
+    myapp.network = true;
+    navigator.vibrate([200, 400, 200]);
+}
+
+function onDeviceReady() {
+    alert("Device Ready!");
+
+    checkConnection();
+
+    navigator.notification.confirm(
+        'Confirm location access!', // message
+        onConfirm, // callback to invoke with index of button pressed
+        'Geolocation', // title
+        ['Allow', 'Deny'] // buttonLabels
+    );
+    /*get device details*/
+    myapp.model = device.model;
+    myapp.platform = device.platform;
+    myapp.version = device.version;
+    myapp.mfg = device.manufacturer;
+    /*network information*/
+    document.addEventListener("offline", onOffline, false);
+    document.addEventListener("online", onOnline, false);
+}
+
+/*vue instance*/
 var myapp = new Vue({
     el: "#app",
     data: {
@@ -80,7 +142,7 @@ var myapp = new Vue({
             setInterval(function () {
                 this.msgtext = '';
                 this.message = false;
-            },5000)
+            },5000);
         }
     }
 })
