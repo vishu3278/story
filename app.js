@@ -63,6 +63,7 @@ function onOnline() {
 
 function onDeviceReady() {
     alert("Device Ready!");
+    navigator.splashscreen.show();
 
     checkConnection();
 

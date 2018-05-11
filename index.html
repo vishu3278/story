@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
     <!-- <script type="text/javascript" src="js/modernizr-custom.js"></script> -->
     <script type="text/javascript">
-        var isMobile = {
+        /*var isMobile = {
             Android: function() {
                 return navigator.userAgent.match(/Android/i);
             },
@@ -28,18 +28,17 @@
             any: function() {
                 return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
             }
-        };
+        };*/
 
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
 
-        /*alert("Body loaded.");*/
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        /*if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             myapp.showMessage("Mobile device detected");
         }else{
             myapp.showMessage("Not a Mobile device");
         }
-        if( isMobile.Android() ) {alert('Android')};
+        if( isMobile.Android() ) {alert('Android')};*/
 
     }
     
