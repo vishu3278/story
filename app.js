@@ -147,7 +147,7 @@ var myapp = new Vue({
         showMessage: function(msg) {
             this.message = true;
             this.msgtext = msg;
-            var closedelay = setInterval(function () {
+            var closedelay = setTimeout(() => {
                 this.msgtext = '';
                 this.message = false;
             },5000);
