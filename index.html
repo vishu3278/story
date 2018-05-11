@@ -100,11 +100,13 @@
             }
         }
         var x = document.getElementById("geo");
+        var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };
         function getLocation() {
             if (Modernizr.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition,showError);
+                alert("geolocation supported.");
+                navigator.geolocation.getCurrentPosition(showPosition,showError,geooptions);
             } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
+                x.innerHTML = "Geolocation is not supported.";
             }
         }
         function showPosition(position) {

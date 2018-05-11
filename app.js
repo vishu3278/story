@@ -39,7 +39,7 @@ function checkConnection() {
     }
 }
 
-var geooptions = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
+/*var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };*/
 
 
 function onConfirm(buttonIndex) {
@@ -66,12 +66,13 @@ function onDeviceReady() {
 
     checkConnection();
 
-    navigator.notification.confirm(
+    /*navigator.notification.confirm(
         'Confirm location access!', // message
         onConfirm, // callback to invoke with index of button pressed
         'Geolocation', // title
         ['Allow', 'Deny'] // buttonLabels
-    );
+    );*/
+    
     /*get device details*/
     myapp.model = device.model;
     myapp.platform = device.platform;
@@ -135,6 +136,13 @@ var myapp = new Vue({
             } else {
                 navigator.notification.alert("No internet available!");
             }
+        },
+        getMedia: function(id) {
+            axios.get('http://demo.wp-api.org/wp-json/wp/v2/media/'+id).
+            then(response=>{
+                return response;
+                console.log(response);
+            })
         },
         showMessage: function(msg) {
             this.message = true;
