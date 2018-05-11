@@ -72,7 +72,6 @@ function onDeviceReady() {
         'Geolocation', // title
         ['Allow', 'Deny'] // buttonLabels
     );*/
-    getLocation();
 
     /*get device details*/
     myapp.model = device.model;
@@ -119,7 +118,7 @@ var myapp = new Vue({
 
             } else {
                 // alert("No network available.");
-                navigator.notification.alert("No internet available!");
+                alert("No internet available!");
             }
         },
         getPages: function() {
@@ -135,7 +134,7 @@ var myapp = new Vue({
                     .catch(e => {this.errors.push(e)});
                 
             } else {
-                navigator.notification.alert("No internet available!");
+                alert("No internet available!");
             }
         },
         getMedia: function(id) {
@@ -148,7 +147,7 @@ var myapp = new Vue({
         showMessage: function(msg) {
             this.message = true;
             this.msgtext = msg;
-            setInterval(function () {
+            var closedelay = setInterval(function () {
                 this.msgtext = '';
                 this.message = false;
             },5000);
