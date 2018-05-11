@@ -29,18 +29,10 @@
                 return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
             }
         };
-        function showmessage(msg) {
-            myapp.message = true;
-            myapp.msgtext = msg;
-            var closedelay = setInterval(function () {
-                myapp.msgtext = '';
-                myapp.message = false;
-            },5000);
-        }
+
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
 
-        getLocation();
         /*alert("Body loaded.");*/
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             myapp.showMessage("Mobile device detected");
@@ -123,37 +115,34 @@
         function showError(error) {
             switch(error.code) {
                 case error.PERMISSION_DENIED:
-                    x.innerHTML = "User denied the request for Geolocation."
+                    myapp.showMessage("User denied the request for Geolocation.");
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    x.innerHTML = "Location information is unavailable."
+                    myapp.showMessage("Location information is unavailable.");
                     break;
                 case error.TIMEOUT:
-                    x.innerHTML = "The request to get user location timed out."
+                    myapp.showMessage("The request to get user location timed out.");
                     break;
                 case error.UNKNOWN_ERROR:
-                    x.innerHTML = "An unknown error occurred."
+                    myapp.showMessage("An unknown error occurred.");
                     break;
             }
         }
-        var x = document.getElementById("geo");
+        
         var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };
         function getLocation() {
             if (navigator.geolocation) {
-                // alert("geolocation supported.");
                 myapp.showMessage("Geolocation supported");
                 navigator.geolocation.getCurrentPosition(showPosition,showError,geooptions);
             } else {
-                // myapp.message = "Geolocation is not supported.";
                 myapp.showMessage("Geolocation is not supported");
             }
         }
         function showPosition(position) {
-            /*x.innerHTML = "Latitude: " + position.coords.latitude + 
-            "<br>Longitude: " + position.coords.longitude;*/
             myapp.lat = position.coords.latitude;
             myapp.long = position.coords.longitude;
         }
+        getLocation();
     </script>
 </body>
 
