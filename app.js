@@ -64,6 +64,7 @@ function onOnline() {
 function onDeviceReady() {
     alert("Device Ready!");
     navigator.splashscreen.show();
+    alert("navigator.geolocation works well");
 
     checkConnection();
 
