@@ -13,12 +13,11 @@ var onSuccess = function(position) {
 
 /*onError Callback receives a PositionError object*/
 function onError(error) {
-    alert('code: ' + error.code + '\n' +
-        ' message: ' + error.message + '\n');
+    alert('error code: ' + error.code + '\n' +
+        ' message: ' + error.message);
 }
 function checkConnection() {
     var networkState = navigator.connection.type;
-
     var states = {};
     states[Connection.UNKNOWN]  = 'Unknown connection';
     states[Connection.ETHERNET] = 'Ethernet connection';
@@ -39,8 +38,7 @@ function checkConnection() {
     }
 }
 
-/*var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };*/
-
+var geooptions = { maximumAge: 10000, timeout: 10000, enableHighAccuracy: true };
 
 function onConfirm(buttonIndex) {
     if (buttonIndex == 1) {
@@ -62,18 +60,17 @@ function onOnline() {
 }
 
 function onDeviceReady() {
-    alert("Device Ready!");
-    navigator.splashscreen.show();
-    alert("navigator.geolocation works well");
+    // alert("Device Ready!");
+    // navigator.splashscreen.show();
 
     checkConnection();
 
-    /*navigator.notification.confirm(
+    navigator.notification.confirm(
         'Confirm location access!', // message
         onConfirm, // callback to invoke with index of button pressed
         'Geolocation', // title
         ['Allow', 'Deny'] // buttonLabels
-    );*/
+    );
 
     /*get device details*/
     myapp.model = device.model;
