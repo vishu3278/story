@@ -91,9 +91,15 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
 
-    <feature name="http://api.phonegap.com/1.0/geolocation"/>
-
     <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+        </config-file>
+        <feature name="Geolocation">
+            <param name="android-package" value="org.apache.cordova.GeoBroker" />
+        </feature>
         <allow-intent href="market:*" />
         <preference name="Fullscreen" value="true" />
         <preference name="KeepRunning" value="false"/>
