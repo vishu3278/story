@@ -56,7 +56,7 @@
     <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-file" spec="~4.3.3" />
     <!-- <plugin name="cordova-plugin-file-transfer" /> -->
-    <plugin name="cordova-plugin-geolocation" version="2.1.0" />
+    <plugin name="cordova-plugin-geolocation" version="2.2.0" />
     <plugin name="cordova-plugin-globalization" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-media" />
@@ -90,6 +90,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
 
     <platform name="android">
         <allow-intent href="market:*" />
