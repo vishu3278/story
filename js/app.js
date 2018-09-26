@@ -44,7 +44,7 @@ var myapp = new Vue({
         headers:[],
         totalposts:0,
         totalpages:0,
-        perpage:4,
+        perpage:15,
         currentpage:1,
         postdetail:'',
         paging:[],
@@ -110,7 +110,7 @@ var myapp = new Vue({
                 }
                 return output;
             }
-                returnobj.media = newobj.wpfeaturedmedia[0].media_details.sizes.full.source_url;
+                returnobj.media = newobj.wpfeaturedmedia[0].media_details.sizes.medium.source_url;
                 returnobj.category = category(newobj.wpterm[0]); //newobj.wpterm[0][0].name;
                 returnobj.tags = category(newobj.wpterm[1]); //[0].name;
             // console.log(returnobj);
