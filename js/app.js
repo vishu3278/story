@@ -2,6 +2,28 @@ const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 const PostDetail = { template:'<div><section>Post detail</section></div>'}
 
+Vue.component('post-detail', { 
+    props:['id'],
+    data:function() {
+        return {
+            postDetail:[]
+        }
+    },
+    template:'<div><section>Post #{{id}} detail</section></div>',
+    mounted:function () {
+        this.showDetail(id);
+    },
+    methods:{
+        showDetail: function(id) {
+            axios.get('http://tellmeastorymom.com/wp-json/wp/v2/posts/'+id+'')
+            .then(result=>{
+                console.log(result.data);
+                this.postDetail = result.data
+            }, (error)=>{console.log(error)})
+            .catch(error=>{alert(error)});
+        }
+    }
+})
 const routes = [
   { path: '/foo', component: Foo },
   { path: '/bar', component: Bar },
@@ -88,7 +110,7 @@ var myapp = new Vue({
                 }
                 return output;
             }
-                returnobj.media = newobj.wpfeaturedmedia[0].media_details.sizes.medium.source_url;
+                returnobj.media = newobj.wpfeaturedmedia[0].media_details.sizes.full.source_url;
                 returnobj.category = category(newobj.wpterm[0]); //newobj.wpterm[0][0].name;
                 returnobj.tags = category(newobj.wpterm[1]); //[0].name;
             // console.log(returnobj);
