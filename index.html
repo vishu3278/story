@@ -4,85 +4,145 @@
 <head>
     <meta charset="utf-8">
     <title>Story App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
-    <!-- <script type="text/javascript" src="js/modernizr-custom.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <script type="text/javascript">
+    /*onSuccess Callback*/
+    var onSuccess = function(position) {
+        alert('Latitude: ' + position.coords.latitude + '\n' +
+            'Longitude: ' + position.coords.longitude + '\n' +
+            'Altitude: ' + position.coords.altitude + '\n' +
+            'Accuracy: ' + position.coords.accuracy + '\n' +
+            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+            'Heading: ' + position.coords.heading + '\n' +
+            'Speed: ' + position.coords.speed + '\n' +
+            'Timestamp: ' + position.timestamp + '\n');
+    };
+
+    /*onError Callback receives a PositionError object*/
+    function onError(error) {
+        alert('code: ' + error.code + '\n' +
+            'message: ' + error.message + '\n');
+    }
 
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
-
+        // alert("Body loaded.");
     }
-    
+
+    function onDeviceReady() {
+        alert("Ready.");
+        // alert("geolocation works well.");
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+    });
     </script>
     <script type="text/javascript" src="cordova.js"></script>
 </head>
 
 <body onload="loadApp()">
-    <div id="app">
-        <section class="hero is-primary">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">Geolocation</h1>
-                    <h2 class="subtitle">Your current location</h2>
-                    <p>Lat: {{lat}} | Long: {{long}}</p>
-                    <div id="geo"></div>
-                    <h4 class="title is-4">Device </h4>
-                    <p><span class="tag is-white">Model</span>:{{mfg}} {{ model }}</p>
-                    <p><span class="tag is-white">Platform</span>: {{platform}} {{version}} </p>
-                    <h4 class="title is-4">Network:</h4>
-                    <p><span class="tag is-white">Type</span>{{networkType}}
-                        <span class="icon is-large has-background-white has-text-primary">
-                            <i class="mdi mdi-36px" v-bind:class="{'mdi-wifi':network,'mdi-wifi-off':!network}"></i>
-                        </span>
-                    </p>
+    <div id="app" class=" ">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper blue">
+                    <a href="#" class="brand-logo center">Story</a>
+                    <ul id="nav-mobile" class="left ">
+                        <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+                    </ul>
                 </div>
+            </nav>
+        </div>
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="img/background.jpg">
+                    </div>
+                    <a href="#user"><img class="circle" src="img/logo.png"></a>
+                    <a href="#name"><span class="white-text name">John Doe</span></a>
+                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><router-link to="/foo">Go to Foo</router-link></li>
+            <li><router-link to="/bar">Go to Bar</router-link></li>
+            <li><a href="#!">Second Link</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="subheader">Categories</a></li>
+            <li v-for="item in categories"><a class="waves-effect" href="#!">{{item.name}}</a></li>
+        </ul>
+        <div class="container">
+            <router-view></router-view>
+            <h3>{{ page }}</h3>
+            <div class="row">
+                <div class="col s6"><p class="left-align">Pages {{currentpage}} of {{totalpages}}</p></div>
+                <div class="col s6"><p class="right-align">Total posts {{totalposts}}</p></div>
             </div>
-        </section>
-        
-        <div class="section">
-            <div class="container">
-                <h1 class="title">{{ page }}</h1>
-                <button class="button" v-on:click="getPost()" v-bind:class="{'is-loading':loadingPost}">Get Posts</button>
-                <button class="button" v-on:click="getPages()" v-bind:class="{'is-loading':loadingPage}">Get Pages</button>
-                <hr>
-                <div class="notification is-success" v-if="message">
-                    <!-- <button class="delete"></button> -->
-                    {{msgtext}}
+            
+            <ul class="pagination" v-show="totalpages > 1">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li v-for="n in totalpages" v-bind:class="{active:n==currentpage}"><a href="#">{{n}}</a></li>
+                <li class="waves-effect"><a href="#!" ><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+            <hr>
+            <article class="card" v-for="item in posts">
+                <div class="card-image">
+                    <img class="responsive-img" v-bind:src="featuredMedia(item._embedded).media">
                 </div>
-
-                <article class="media" v-for="item in posts">
-                    <figure class="media-left">
-                        <p class="image is-64x64">
-                            <img v-bind:src="item._links">
-                        </p>
-                    </figure>
-                    <div class="media-content">
-                        <div class="content">
-                            <strong v-html="item.title.rendered"></strong> <small>{{ item.date}}</small>
-                            <div v-html="item.excerpt.rendered"></div>
+                <div class="card-content">
+                    <small>{{ item.date}}</small>
+                    <div class="content">
+                        <strong v-html="item.title.rendered"></strong>
+                        <div v-html="item.excerpt.rendered"></div>
+                        <div class="tags">Categories
+                            <div class="chip" v-for="cat in (featuredMedia(item._embedded).category)">{{cat}}</div>
                         </div>
-                        <!-- <nav class="level is-mobile">
+                        <div class="tags">Tags
+                            <div class="chip" v-for="tag in (featuredMedia(item._embedded).tags)">{{tag}}</div>
+                        </div>
+                    </div>
+                    <!-- <nav class="level is-mobile">
                         <div class="level-left">
                             <a v-bind:href="item.link" class="level-item">
                               <span class="icon is-small"><i class="material-icons">launch</i></span></a>
                         </div>
                     </nav> -->
-                    </div>
-                </article>
-                <div class="box" v-for="item in pages">
-                    <h3 class="title" v-html="item.title.rendered"></h3>
-                    <h5 class="subtitle">{{item.date}}</h5>
-                    <div v-html="item.content.rendered"></div>
                 </div>
+                <div class="card-action">
+                    <!-- <a v-bind:href="/detail" v-on:click="postDetail(item.id)">Read more</a> -->
+                    <router-link to="/detail" v-on:click="postDetail(item.id)">Read more</router-link>
+                </div>
+            </article>
+            <div class="box" v-for="item in pages">
+                <h3 class="title" v-html="item.title.rendered"></h3>
+                <h5 class="subtitle">{{item.date}}</h5>
+                <div v-html="item.content.rendered"></div>
             </div>
         </div>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col"> <a href="#">Home</a> </div>
+                    <div class="col"><a href="/search">Search</a> </div>
+                    <div class="col"> <a href="/stories">Stories</a> </div>
+                    <div class="col"> <a href="/momp">Mompreneur</a> </div>
+                </div>
+            </div>
+        </footer>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
     <script type="text/javascript" src="js/axios.min.js"></script>
-    <script type="text/javascript" src="js/vue.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/vue-router.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>
