@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="font/flaticon.css">
     <link rel="stylesheet" type="text/css" href="css/story.css">
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <script type="text/javascript">
@@ -52,9 +53,9 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper blue">
-                    <a href="#" class="brand-logo center">Story</a>
+                    <a href="#" class="brand-logo center">Story<!-- <img src="img/logo.png" alt="logo"> --></a>
                     <ul id="nav-mobile" class="left ">
-                        <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+                        <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="flaticon-menu-1"></i></a></li>
                     </ul>
                 </div>
             </nav>
@@ -82,6 +83,7 @@
         </ul>
         <div class="container">
             <router-view></router-view>
+            <post-detail v-bind:id="3642"></post-detail>
             <h3>{{ page }}</h3>
             <div class="row">
                 <div class="col s6"><p class="left-align">Pages {{currentpage}} of {{totalpages}}</p></div>
@@ -94,7 +96,7 @@
                 <li class="waves-effect"><a href="#!" ><i class="material-icons">chevron_right</i></a></li>
             </ul>
             <hr>
-            <article class="card" v-for="item in posts">
+            <article class="card" v-for="item in posts" v-bind:id="item.id">
                 <div class="card-image">
                     <img class="responsive-img" v-bind:src="featuredMedia(item._embedded).media">
                 </div>
@@ -129,13 +131,19 @@
             </div>
         </div>
         <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col"> <a href="#">Home</a> </div>
-                    <div class="col"><a href="/search">Search</a> </div>
-                    <div class="col"> <a href="/stories">Stories</a> </div>
-                    <div class="col"> <a href="/momp">Mompreneur</a> </div>
-                </div>
+            <div class="blue center-align">
+                <!-- <div class="row">
+                    <div class="col s3"><a href="#" class="blue btn-large waves-effect center-align"><i class="material-icons ">home</i> Home</a> </div>
+                    <div class="col s3"><a href="/search" class="blue btn-large waves-effect center-align"><i class="material-icons ">search</i> Search</a> </div>
+                    <div class="col s3"><a href="/stories" class="blue btn-large waves-effect center-align"><i class="material-icons ">library_books</i> Stories</a> </div>
+                    <div class="col s3"><a href="/momp" class="blue btn-large waves-effect center-align"><i class="material-icons ">person_outline</i> Mompreneur</a> </div>
+                </div> -->
+                <nav>
+                    <a href="#" class="blue waves-effect center-align"><i class="flaticon-home "></i> Home</a>
+                    <a href="/search" class="blue waves-effect center-align"><i class="flaticon-search "></i> Search</a>
+                    <a href="/stories" class="blue waves-effect center-align"><i class="flaticon-fairy-tale "></i> Stories</a>
+                    <a href="/momp" class="blue waves-effect center-align"><i class="flaticon-mother-1 "></i> Mompreneur</a>
+                </nav>
             </div>
         </footer>
     </div>
