@@ -6,28 +6,9 @@
     <title>Story App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/flaticon.css">
-    <link rel="stylesheet" type="text/css" href="css/story.css">
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    
     <script type="text/javascript">
     /*onSuccess Callback*/
-    var onSuccess = function(position) {
-        alert('Latitude: ' + position.coords.latitude + '\n' +
-            'Longitude: ' + position.coords.longitude + '\n' +
-            'Altitude: ' + position.coords.altitude + '\n' +
-            'Accuracy: ' + position.coords.accuracy + '\n' +
-            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-            'Heading: ' + position.coords.heading + '\n' +
-            'Speed: ' + position.coords.speed + '\n' +
-            'Timestamp: ' + position.timestamp + '\n');
-    };
-
-    /*onError Callback receives a PositionError object*/
-    function onError(error) {
-        alert('code: ' + error.code + '\n' +
-            'message: ' + error.message + '\n');
-    }
 
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -49,109 +30,8 @@
 </head>
 
 <body onload="loadApp()">
-    <div id="app" class=" " style="padding-bottom: 60px;">
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper blue">
-                    <a href="#" class="brand-logo center">Story<!-- <img src="img/logo.png" alt="logo"> --></a>
-                    <ul id="nav-mobile" class="left ">
-                        <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="flaticon-menu-1"></i></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img src="img/background.jpg">
-                    </div>
-                    <a href="#user"><img class="circle" src="img/logo.png"></a>
-                    <a href="#name"><span class="white-text name">John Doe</span></a>
-                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-                </div>
-            </li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><router-link to="/foo">Go to Foo</router-link></li>
-            <li><router-link to="/bar">Go to Bar</router-link></li>
-            <li><a href="#!">Second Link</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Categories</a></li>
-            <li v-for="item in categories"><a class="waves-effect" href="#!">{{item.name}}</a></li>
-        </ul>
-        <div class="container">
-            <router-view></router-view>
-            <post-detail v-bind:id="3642"></post-detail>
-            <h3>{{ page }}</h3>
-            <div class="row">
-                <div class="col s6"><p class="left-align">Pages {{currentpage}} of {{totalpages}}</p></div>
-                <div class="col s6"><p class="right-align">Total posts {{totalposts}}</p></div>
-            </div>
-            
-            <ul class="pagination" v-show="totalpages > 1">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li v-for="n in totalpages" v-bind:class="{active:n==currentpage}"><a href="#">{{n}}</a></li>
-                <li class="waves-effect"><a href="#!" ><i class="material-icons">chevron_right</i></a></li>
-            </ul>
-            <hr>
-            <article class="card" v-for="item in posts" v-bind:id="item.id">
-                <div class="card-image">
-                    <img class="responsive-img" v-bind:src="featuredMedia(item._embedded).media">
-                </div>
-                <div class="card-content">
-                    <small>{{ item.date}}</small>
-                    <div class="content">
-                        <strong v-html="item.title.rendered"></strong>
-                        <div v-html="item.excerpt.rendered"></div>
-                        <div class="tags">Categories
-                            <div class="chip" v-for="cat in (featuredMedia(item._embedded).category)">{{cat}}</div>
-                        </div>
-                        <div class="tags">Tags
-                            <div class="chip" v-for="tag in (featuredMedia(item._embedded).tags)">{{tag}}</div>
-                        </div>
-                    </div>
-                    <!-- <nav class="level is-mobile">
-                        <div class="level-left">
-                            <a v-bind:href="item.link" class="level-item">
-                              <span class="icon is-small"><i class="material-icons">launch</i></span></a>
-                        </div>
-                    </nav> -->
-                </div>
-                <div class="card-action">
-                    <!-- <a v-bind:href="/detail" v-on:click="postDetail(item.id)">Read more</a> -->
-                    <router-link to="/detail" v-on:click="postDetail(item.id)">Read more</router-link>
-                </div>
-            </article>
-            <div class="box" v-for="item in pages">
-                <h3 class="title" v-html="item.title.rendered"></h3>
-                <h5 class="subtitle">{{item.date}}</h5>
-                <div v-html="item.content.rendered"></div>
-            </div>
-        </div>
-        <footer class="page-footer">
-            <div class="blue center-align">
-                <!-- <div class="row">
-                    <div class="col s3"><a href="#" class="blue btn-large waves-effect center-align"><i class="material-icons ">home</i> Home</a> </div>
-                    <div class="col s3"><a href="/search" class="blue btn-large waves-effect center-align"><i class="material-icons ">search</i> Search</a> </div>
-                    <div class="col s3"><a href="/stories" class="blue btn-large waves-effect center-align"><i class="material-icons ">library_books</i> Stories</a> </div>
-                    <div class="col s3"><a href="/momp" class="blue btn-large waves-effect center-align"><i class="material-icons ">person_outline</i> Mompreneur</a> </div>
-                </div> -->
-                <nav>
-                    <a href="#" class="blue waves-effect center-align"><i class="flaticon-home "></i> Home</a>
-                    <a href="/search" class="blue waves-effect center-align"><i class="flaticon-search "></i> Search</a>
-                    <a href="/stories" class="blue waves-effect center-align"><i class="flaticon-fairy-tale "></i> Stories</a>
-                    <a href="/momp" class="blue waves-effect center-align"><i class="flaticon-mother-1 "></i> Mompreneur</a>
-                </nav>
-            </div>
-        </footer>
+    <div id="app" class=" " >
     </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <script type="text/javascript" src="js/axios.min.js"></script>
-    <script type="text/javascript" src="js/vue.js"></script>
-    <script type="text/javascript" src="js/vue-router.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>
