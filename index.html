@@ -20,6 +20,7 @@
         // alert("geolocation works well.");
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
+        function exitApp(){navigator.app.exitApp();}
 
     document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.sidenav');
