@@ -14,19 +14,60 @@
     <link href=css/app.c62af804.css rel=stylesheet>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
-    /*onSuccess Callback*/
+    
+    function onOffline() {
+        navigator.notification.alert("You lost connection!");
+    }
 
+    function onOnline() {
+        navigator.vibrate([200, 400, 200]);
+    }
+    function checkConnection() {
+        var networkState = navigator.connection.type;
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        // alert('Connection type: ' + states[networkState]);
+        myapp.networkType = states[networkState];
+        if (networkState !== Connection.NONE) {
+            navigator.vibrate([200, 400, 200]);
+        }else{
+            navigator.notification.alert("Connect to internet to proceed!");
+        }
+    }
     function loadApp() {
         document.addEventListener("deviceready", onDeviceReady, false);
         // alert("Body loaded.");
     }
 
     function onDeviceReady() {
-        alert("Ready.");
-        // alert("geolocation works well.");
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        checkConnection();
+
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
+        //alert("Ready.");
     }
-        function exitApp(){navigator.app.exitApp();}
+        
+        function exitApp(){
+            function onConfirm(buttonIndex) {
+                if (buttonIndex == 1) {
+                    navigator.app.exitApp();
+                }
+            }
+            navigator.notification.confirm(
+                'Are you sure want to exit!',  // message
+                onConfirm,              // callback to invoke with index of button pressed
+                'Exit App',            // title
+                'Cancel,Exit'          // buttonLabels
+            );
+        }
     </script>
     <script type="text/javascript" src="cordova.js"></script>
 </head>
