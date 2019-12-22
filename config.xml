@@ -57,7 +57,7 @@
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
-    <splash src="splash.png" />
+    <!--<splash src="splash.png" />-->
 
     <platform name="android">
         <allow-intent href="market:*" />
@@ -75,7 +75,7 @@
         <preference name="AppendUserAgent" value="My Browser" /> -->
         <preference name="android-installLocation" value="auto" />
         <preference name="AutoHideSplashScreen" value="true" />
-        <preference name="SplashScreenDelay" value="3000" />
+        <preference name="SplashScreenDelay" value="4000" />
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashShowOnlyFirstTime" value="false" />
         <preference name="SplashScreenSpinnerColor" value="white" />
