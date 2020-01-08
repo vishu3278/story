@@ -96,9 +96,5 @@
         <splash density="port-xxxhdpi" src="res/screens/android/splash-port-xxxhdpi.png" />
          
     </platform>
-    <!-- <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform> -->
 
 </widget>
