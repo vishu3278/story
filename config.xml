@@ -17,11 +17,6 @@
         Vishwajeet
     </author>
 
-    <!--
-        If you do not want any permissions to be added to your app, add the
-        following tag to your config.xml; you will still have the INTERNET
-        permission on your app, which PhoneGap requires.
-    -->
     <content src="index.html" />
     <access origin="*"/>
     <allow-navigation href="*" />
@@ -35,7 +30,7 @@
     <preference name="android-minSdkVersion" value="23" />
     <preference name="permissions" value="none"/>
 
-    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="DisallowOverscroll" value="false"/>
     <preference name="BackgroundColor" value="0xff0000ff"/>
     <preference name="HideKeyboardFormAccessoryBar" value="false"/>
     
