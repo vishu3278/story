@@ -66,7 +66,8 @@
         <preference name="InAppBrowserStorageEnabled" value="true"/>
         <preference name="LoadingDialog" value="Loading, Please wait..."/>
         <preference name="ErrorUrl" value="error.html"/>
-        <preference name="ShowTitle" value="true"/>
+        <preference name="ShowTitle" value="false"/>
+        <preference name="HideKeyboardFormAccessoryBar" value="true"/>
         <preference name="LogLevel" value="VERBOSE"/>
         <preference name="AndroidLaunchMode" value="singleTop"/>
         <preference name="DefaultVolumeStream" value="call" />
