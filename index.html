@@ -53,7 +53,12 @@
         document.addEventListener("offline", onOffline, false);
         document.addEventListener("online", onOnline, false);
         //alert("Ready.");
-        StatusBar.hide();
+        if (window.StatusBar) {
+            window.StatusBar.show();
+            setTimeout(function() {
+                window.StatusBar.hide();
+            }, 500);
+        }
     }
         
         function exitApp(){
