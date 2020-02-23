@@ -53,8 +53,8 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
 
     <!-- Third party plugins -->
-        <plugin name="cordova-plugin-x-socialsharing" spec="5.1.7" source="npm" />
-        <!--<plugin name="nl.x-services.plugins.socialsharing" spec="4.3.16" />-->
+        <plugin name="cordova-plugin-np-socialsharing" spec="^5.4.0" source="npm" />
+        
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
     <splash src="splash.png" />
