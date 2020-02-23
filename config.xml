@@ -54,7 +54,7 @@
 
     <!-- Third party plugins -->
         <!--<plugin name="cordova-plugin-x-socialsharing" spec="5.6.0" source="npm" />-->
-        <gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.16" />
+        <plugin name="nl.x-services.plugins.socialsharing" spec="4.3.16" />
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
     <splash src="splash.png" />
