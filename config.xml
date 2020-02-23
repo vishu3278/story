@@ -53,6 +53,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
 
     <!-- Third party plugins -->
+        <plugin name="Storage" value="org.apache.cordova.Storage" />
         <plugin name="cordova-plugin-x-socialsharing" spec="5.4.0" />
         
     <!-- Define app icon for each platform. -->
@@ -82,7 +83,7 @@
         <preference name="SplashScreenSpinnerColor" value="white" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
             
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            
             
         <icon density="ldpi" src="res/icon/android/ldpi.png" />
         <icon density="mdpi" src="res/icon/android/mdpi.png" />
