@@ -82,6 +82,8 @@
         <preference name="SplashScreenSpinnerColor" value="white" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
             
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            
         <icon density="ldpi" src="res/icon/android/ldpi.png" />
         <icon density="mdpi" src="res/icon/android/mdpi.png" />
         <icon density="hdpi" src="res/icon/android/hdpi.png" />
