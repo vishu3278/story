@@ -77,19 +77,11 @@
             );
         }
         
-        var options = {
-            message: 'share this', // not supported on some apps (Facebook, Instagram)
-            subject: 'the subject', // fi. for email
-            files: ['http://www.tellmeastorymom.com/wp-content/uploads/2017/01/two-trees.png'], // an array of filenames either locally or remotely
-            url: 'https://tellmeastorymom.com',
-            chooserTitle: 'Pick an app', // Android only, you can override the default share sheet title
-            appPackageName: 'com.whatsapp' // Android only, you can provide id of the App you want to share with
-          };
-          function shareTo (message, image, link) {
+        function shareTo (message, image, link) {
               //navigator.notification.alert("ready");
               //window.plugins.socialsharing.shareWithOptions(options);
               window.plugins.socialsharing.share(message, null, image, link);
-          }
+        }
     </script>
     
     <script type="text/javascript" src="cordova.js"></script>
