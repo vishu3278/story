@@ -86,7 +86,9 @@
             appPackageName: 'com.whatsapp' // Android only, you can provide id of the App you want to share with
           };
           function shareTo (arguments) {
-            window.plugins.socialsharing.shareWithOptions(options);
+              navigator.notification.alert("ready");
+              //window.plugins.socialsharing.shareWithOptions(options);
+              window.plugins.socialsharing.share('Message and subject', 'The subject')
           }
     </script>
     
