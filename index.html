@@ -85,10 +85,10 @@
             chooserTitle: 'Pick an app', // Android only, you can override the default share sheet title
             appPackageName: 'com.whatsapp' // Android only, you can provide id of the App you want to share with
           };
-          function shareTo (arguments) {
+          function shareTo (message, image, link) {
               //navigator.notification.alert("ready");
               //window.plugins.socialsharing.shareWithOptions(options);
-              window.plugins.socialsharing.share('Message and subject', 'The subject')
+              window.plugins.socialsharing.share(message, null, image, link);
           }
     </script>
     
