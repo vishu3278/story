@@ -80,12 +80,12 @@
         function shareTo (argument) {
               //navigator.notification.alert("ready");
               //window.plugins.socialsharing.shareWithOptions(options);
-              window.plugins.socialsharing.share('message', null, 'img/noimage.jpg', 'http://tellmeastorymom.com');
+              window.plugins.socialsharing.share(window.sessionStorage.getItem('title'), null, sessionStorage.getItem('image'), sessionStorage.getItem('link'));
         }
     </script>
     
     <script type="text/javascript" src="cordova.js"></script>
-    <!--<script type="text/javascript" src="js/SocialSharing.js"></script>-->
+    <script type="text/javascript" src="js/SocialSharing.js"></script>
 </head>
 
 <body onload="loadApp()">
