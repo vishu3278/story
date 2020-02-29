@@ -54,7 +54,7 @@
 
     <!-- Third party plugins -->
         
-        <plugin name="cordova-plugin-x-socialsharing" spec="~5.4.0" />
+        <plugin name="cordova-plugin-x-socialsharing" spec="5.4.0" />
         
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
