@@ -77,10 +77,10 @@
             );
         }
         
-        function shareTo (message, image, link) {
-              navigator.notification.alert("ready");
+        function shareTo (argument) {
+              //navigator.notification.alert("ready");
               //window.plugins.socialsharing.shareWithOptions(options);
-              window.plugins.socialsharing.share(message, null, image, link);
+              window.plugins.socialsharing.share('message', null, 'noimage.jpg', 'http://tellmeastorymom.com');
         }
     </script>
     
